@@ -24,4 +24,4 @@ def test_keypair_raw_base64_cycle():
 if __name__ == "__main__":
     test_keypair_pem_cycle()
     test_keypair_raw_base64_cycle()
-    print("All tests passed.")
+    print("All key tests passed.")
