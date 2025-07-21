@@ -1,3 +1,4 @@
+import base64
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives import serialization
 
@@ -40,3 +41,17 @@ class ECCKeyPair:
         if not isinstance(public_key, ec.EllipticCurvePublicKey):
             raise ValueError("Not an ECC public key")
         return public_key
+
+    def public_key_raw_base64(self) -> str:
+        raw_bytes = self._public_key.public_bytes(
+            encoding=serialization.Encoding.X962,
+            format=serialization.PublicFormat.UncompressedPoint,
+        )
+        return base64.b64encode(raw_bytes).decode("utf-8")
+
+    @staticmethod
+    def load_public_key_raw_base64(b64_key: str) -> ec.EllipticCurvePublicKey:
+        raw_bytes = base64.b64decode(b64_key)
+        if len(raw_bytes) != 65 or raw_bytes[0] != 0x04:
+            raise ValueError("Invalid uncompressed ECC public key format")
+        return ec.EllipticCurvePublicKey.from_encoded_point(ec.SECP256R1(), raw_bytes)
