@@ -1,16 +1,13 @@
 from curveauth.keys import ECCKeyPair
 
 def test_keypair_pem_cycle():
-    # Generate new key pair
     keypair = ECCKeyPair.generate()
 
-    # Export public key to PEM and reload it
     public_pem = keypair.public_pem()
     loaded_pub = ECCKeyPair.load_public_pem(public_pem)
 
     assert loaded_pub.public_numbers() == keypair._public_key.public_numbers()
 
-    # Export private key to PEM and reload it
     private_pem = keypair.private_pem()
     loaded_keypair = ECCKeyPair.load_private_pem(private_pem)
 
