@@ -1,3 +1,7 @@
+"""
+Generate API keys using random bytes.
+Supports base64 and hex encoding with optional prefixing.
+"""
 import os
 import base64
 
