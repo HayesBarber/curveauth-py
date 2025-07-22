@@ -7,7 +7,7 @@ def generate_api_key(length: int = 32, format: str = "base64", prefix: str = Non
 
     :param length: Number of random bytes.
     :param format: Output format: 'base64', 'hex'.
-    :param prefix: Optional prefix.
+    :param prefix: Optional prefix to prepend to the encoded key.
     :return: API key as a string.
     """
     raw = os.urandom(length)
