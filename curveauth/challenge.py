@@ -1,3 +1,7 @@
+"""
+Generate random challenges to be used when asking clients to sign a challenge.
+Useful for authentication or key verification workflows.
+"""
 import os
 import base64
 
