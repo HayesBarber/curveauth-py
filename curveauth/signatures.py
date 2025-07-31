@@ -40,7 +40,7 @@ def verify_signature(message: str, signature_b64: str, public_key_str: str, is_r
     :return: True if the signature is valid, False otherwise.
     """
     try:
-        signature = base64.b64decode(signature_b64)
+        signature = base64.b64decode(signature_b64, validate=True)
         if is_raw_key:
             public_key = ECCKeyPair.load_public_key_raw_base64(public_key_str)
         else:
